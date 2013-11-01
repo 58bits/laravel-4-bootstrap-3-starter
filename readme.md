@@ -35,11 +35,11 @@ Here's a description of the differences from the original starter site:
 [![Widget](http://downloads.58bits.com/lv4bs3/lv4bs3_05_s.png "Create widget page")](http://downloads.58bits.com/lv4bs3/lv4bs3_05.png)
 
 
-
-
 ##Requirements and Installation
 
-Follow the excellent instructions over at [Laravel 4 Bootstrap Starter Site](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site). Once the migrations are run -  Admin:admin, User:user accounts will be created.
+Clone this repository `git clone git@github.com:58bits/laravel-4-bootstrap-3-starter.git myproject`
+
+And then follow the excellent instructions over at [Laravel 4 Bootstrap Starter Site](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site). Once the migrations are run -  Admin:admin, User:user accounts will be created.
 
 The current app/config/local/database.php file expects a MySQL database connection with a database named: lv4bs3_www, user: lv4bs3 and password: test. Update these to suit your own dev setup.
 
