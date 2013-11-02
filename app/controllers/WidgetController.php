@@ -35,6 +35,10 @@ class WidgetController extends BaseController {
     /**
      * Display a listing of the resource.
      *
+     * See public function data() below for the data source for the list,
+     * and the view/widget/index.blade.php for the jQuery script that makes
+     * the Ajax request.
+     *
      * @return Response
      */
     public function index()
