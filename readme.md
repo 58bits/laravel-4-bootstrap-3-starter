@@ -14,17 +14,17 @@ Here's a description of the differences from the original starter site:
 
 * I've removed [Basset](https://github.com/jasonlewis/basset) (for the moment at least) and so there is no asset management system. Jason Lewis' asset management package is superb - but this starter app will be used to create management and utility applications, with little custom styling and JavaScript. In other words, once forms, layout, and the Bootstrap styles have been applied, there won't be any further changes to asset files and so an asset management system isn't as important to the application as it would be for a large public facing Web site. If projects evolve - then I may put it back.
 
-* I've used the compiled Bootstrap .css and .js files.
+* I've used the compiled [Bootstrap 3](http://getbootstrap.com/) .css and .js files.
 
 * I've kept the excellent [Bilal](https://github.com/bllim/laravel4-datatables-package) datatables package (although there are still a few wrinkles to iron out with table formatting in Bootstrap 3).
 
-* I've removed Colorbox pop-ups and followed a controller pattern that I've used on Rails applications in the past. I'm not a big fan of popping up windows for forms or CRUD operations - in particular for delete operations. All controllers (well all except the UserController.php) uses the Route::resource RESTful controller methods, with the addition of a delete method that shows the record to be deleted before it's deleted/destroyed. Take a look at `routes.php`, and `WidgetController.php` for examples.
+* I've removed Colorbox pop-ups and followed a controller/view pattern that I've used on Rails applications in the past. I'm not a big fan of popping up windows for forms or CRUD operations - in particular for delete operations. All controllers (well all except the UserController.php) uses the Route::resource RESTful controller methods, with the addition of a delete method that shows the record to be deleted before it's deleted/destroyed. Take a look at `routes.php`, and `WidgetController.php` for examples.
 
 * Following from the contoller pattern above, views also follow a fixed pattern, with `_details.blade.php` and `_form.blade.php` used for both show, and delete as well as create and update. Also look at the `Widget.php` model and views for examples.
 
 * I've created a simplified Bootstrap 3 Navbar - with an Admin dropdown menu that appears if you login as admin.
 
-* I've continued to use [Confide](https://github.com/Zizaco/confide) for authentication and [Entrust](https://github.com/Zizaco/entrust) for authorization- although still digging here.
+* I've continued to use [Confide](https://github.com/Zizaco/confide) for authentication and [Entrust](https://github.com/Zizaco/entrust) for authorization - although still digging here.
 
 ##Screenshots
 
