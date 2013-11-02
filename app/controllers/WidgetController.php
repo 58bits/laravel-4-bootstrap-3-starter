@@ -93,6 +93,7 @@ class WidgetController extends BaseController {
 
         // Validate the inputs
         $validator = Validator::make(Input::all(), $rules);
+
         // Check if the form validates with success
         if ($validator->passes())
         {
@@ -106,7 +107,7 @@ class WidgetController extends BaseController {
             if ( $this->widget->id )
             {
                 // Redirect to the new widget page
-                return Redirect::to('widgets/' . $this->widget->id . '/edit')->with('success', Lang::get('widget/messages.create.success'));
+                return Redirect::to('widgets')->with('success', Lang::get('widget/messages.create.success'));
 
             }
             else {
@@ -238,7 +239,8 @@ class WidgetController extends BaseController {
      */
     public function data()
     {
-        $widgets = Widget::select(array('widgets.id',  'widgets.name', 'widgets.description', 'widgets.created_at'));
+        //Make this method testable and mockable by using our injected $widget member.
+        $widgets = $this->widget->select(array('widgets.id',  'widgets.name', 'widgets.description', 'widgets.created_at'));
 
         return Datatables::of($widgets)
         // ->edit_column('created_at','{{{ Carbon::now()->diffForHumans(Carbon::createFromFormat(\'Y-m-d H\', $test)) }}}')
