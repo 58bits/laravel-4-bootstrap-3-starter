@@ -72,7 +72,7 @@ class AdminRolesController extends AdminController {
         else
         {
             // Redirect to the role management page
-            return Redirect::to('admin/role')->with('error', Lang::get('admin/role/messages.does_not_exist'));
+            return Redirect::to('admin/roles')->with('error', Lang::get('admin/role/messages.does_not_exist'));
         }
 
         // Title
@@ -133,18 +133,18 @@ class AdminRolesController extends AdminController {
                 $this->role->perms()->sync($this->permission->preparePermissionsForSave($inputs['permissions']));
                 
                 // Redirect to the new role page
-                return Redirect::to('admin/role/' . $this->role->id . '/edit')->with('success', Lang::get('admin/role/messages.create.success'));
+                return Redirect::to('admin/roles/' . $this->role->id . '/edit')->with('success', Lang::get('admin/role/messages.create.success'));
 
             }
             else {
                 // Redirect to the role create page
                 //var_dump($this->role);
-                return Redirect::to('admin/role/create')->with('error', Lang::get('admin/role/messages.create.error'));
+                return Redirect::to('admin/roles/create')->with('error', Lang::get('admin/role/messages.create.error'));
             }
         }
         else {
             // Form validation failed
-            return Redirect::to('admin/role/create')->withInput()->withErrors($validator);
+            return Redirect::to('admin/roles/create')->withInput()->withErrors($validator);
         }
     }
 
@@ -164,7 +164,7 @@ class AdminRolesController extends AdminController {
         else
         {
             // Redirect to the role management page
-            return Redirect::to('admin/role')->with('error', Lang::get('admin/role/messages.does_not_exist'));
+            return Redirect::to('admin/roles')->with('error', Lang::get('admin/role/messages.does_not_exist'));
         }
 
         // Title
@@ -216,17 +216,17 @@ class AdminRolesController extends AdminController {
             if ($role->save($rules))
             {
                 // Redirect to the role page
-                return Redirect::to('admin/role/' . $role->id . '/edit')->with('success', Lang::get('admin/role/messages.update.success'));
+                return Redirect::to('admin/roles/' . $role->id . '/edit')->with('success', Lang::get('admin/role/messages.update.success'));
             }
             else
             {
                 // Redirect to the role page
-                return Redirect::to('admin/role/' . $role->id . '/edit')->with('error', Lang::get('admin/role/messages.update.error'));
+                return Redirect::to('admin/roles/' . $role->id . '/edit')->with('error', Lang::get('admin/role/messages.update.error'));
             }
         }
         else {
             // Form validation failed
-            return Redirect::to('admin/role/' . $role->id . '/edit')->withInput()->withErrors($validator);
+            return Redirect::to('admin/roles/' . $role->id . '/edit')->withInput()->withErrors($validator);
         }
     }
 
@@ -249,7 +249,7 @@ class AdminRolesController extends AdminController {
         else
         {
             // Redirect to the role management page
-            return Redirect::to('admin/role')->with('error', Lang::get('admin/role/messages.does_not_exist'));
+            return Redirect::to('admin/roles')->with('error', Lang::get('admin/role/messages.does_not_exist'));
         }
 
         // Show the record
@@ -266,11 +266,11 @@ class AdminRolesController extends AdminController {
         // Was the role deleted?
         if($role->delete()) {
             // Redirect to the role management page
-            return Redirect::to('admin/role')->with('success', Lang::get('admin/role/messages.delete.success'));
+            return Redirect::to('admin/roles')->with('success', Lang::get('admin/role/messages.delete.success'));
         }
 
         // There was a problem deleting the role
-        return Redirect::to('admin/role')->with('error', Lang::get('admin/role/messages.delete.error'));            
+        return Redirect::to('admin/roles')->with('error', Lang::get('admin/role/messages.delete.error'));            
     }
 
     /**
@@ -292,11 +292,11 @@ class AdminRolesController extends AdminController {
                     Action <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="{{{ URL::to(\'admin/role/\' . $id ) }}}">{{{ Lang::get(\'button.show\') }}}</a></li>
-                    <li><a href="{{{ URL::to(\'admin/role/\' . $id . \'/edit\' ) }}}">{{{ Lang::get(\'button.edit\') }}}</a></li>
+                    <li><a href="{{{ URL::to(\'admin/roles/\' . $id ) }}}">{{{ Lang::get(\'button.show\') }}}</a></li>
+                    <li><a href="{{{ URL::to(\'admin/roles/\' . $id . \'/edit\' ) }}}">{{{ Lang::get(\'button.edit\') }}}</a></li>
                     @if($name == \'admin\')
                     @else
-                    <li><a href="{{{ URL::to(\'admin/role/\' . $id . \'/delete\' ) }}}">{{{ Lang::get(\'button.delete\') }}}</a></li>
+                    <li><a href="{{{ URL::to(\'admin/roles/\' . $id . \'/delete\' ) }}}">{{{ Lang::get(\'button.delete\') }}}</a></li>
                     @endif
                   </ul>
                 </div>')

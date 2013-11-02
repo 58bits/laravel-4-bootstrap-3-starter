@@ -16,7 +16,7 @@
  *  ------------------------------------------
  */
 Route::model('users', 'User');
-Route::model('role', 'Role');
+Route::model('roles', 'Role');
 Route::model('widgets', 'Widget');
 
 // Home route
@@ -94,13 +94,15 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 	// Datatables Ajax route.
 	// NOTE: We must define this route first as it is more specific than
 	// the default show resource route for /users/{role_id}
-	Route::get('role/data',            	'AdminRolesController@data');
+	Route::get('roles/data',            	'AdminRolesController@data');
 	
 	// Pre-baked resource controller actions for index, create, store, 
 	// show, edit, update, destroy
-	Route::resource('role', 				'AdminRolesController');
+	Route::resource('roles', 				'AdminRolesController');
 	
 	//Our special delete confirmation route - uses the show/details view
-	Route::get('role/{role}/delete', 		'AdminRolesController@delete');
+	// NOTE: For model biding above to work - the plural paramameter {roles} needs
+	// to be used.
+	Route::get('roles/{roles}/delete', 		'AdminRolesController@delete');
 	
 });

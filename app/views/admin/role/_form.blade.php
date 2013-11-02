@@ -1,8 +1,8 @@
 {{-- Create Role Form --}}
 @if (isset($role))
-{{ Form::open(array('url' => URL::to('admin/role') . '/' . $role->id, 'method' => 'put', 'class' => 'bf')) }}
+{{ Form::open(array('url' => URL::to('admin/roles') . '/' . $role->id, 'method' => 'put', 'class' => 'bf')) }}
 @else
-{{ Form::open(array('url' => URL::to('admin/role'), 'method' => 'post', 'class' => 'bf')) }}
+{{ Form::open(array('url' => URL::to('admin/roles'), 'method' => 'post', 'class' => 'bf')) }}
 @endif
 
 	<!-- role name -->
@@ -43,7 +43,7 @@
 	<!-- Form Actions -->
 	<div class="form-group">
 		<div class="controls">
-			<a href="{{{ URL::to('admin/role') }}}" class="btn btn-primary">Cancel</a>
+			<a href="{{{ URL::to('admin/roles') }}}" class="btn btn-primary">Cancel</a>
 			<button type="submit" class="btn btn-success">OK</button>
 		</div>
 	</div>

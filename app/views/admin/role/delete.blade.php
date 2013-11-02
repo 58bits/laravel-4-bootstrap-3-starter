@@ -14,7 +14,7 @@
                 {{{ $title }}}
 
                 <div class="pull-right">
-                    <a href="{{{ URL::to('admin/role') }}}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+                    <a href="{{{ URL::to('admin/roles') }}}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
                 </div>
             </h3>
         </div>
@@ -24,7 +24,7 @@
         <!-- ./ notifications -->
 
         {{-- Delete Role Form --}}
-        {{ Form::open(array('url' => URL::to('admin/role') . '/' . $role->id, 'method' => 'delete', 'class' => 'bf')) }}
+        {{ Form::open(array('url' => URL::to('admin/roles') . '/' . $role->id, 'method' => 'delete', 'class' => 'bf')) }}
         
            @include('admin/role/_details', compact('role'))
 

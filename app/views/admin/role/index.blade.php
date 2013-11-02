@@ -12,7 +12,7 @@
 			{{{ $title }}}
 
 			<div class="pull-right">
-				<a href="{{{ URL::to('admin/role/create') }}}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span> Create New Role</a>
+				<a href="{{{ URL::to('admin/roles/create') }}}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span> Create New Role</a>
 			</div>
 		</h3>
 	</div>
@@ -50,7 +50,7 @@
 				},
 				"bProcessing": true,
 		        "bServerSide": true,
-		        "sAjaxSource": "{{ URL::to('admin/role/data') }}"
+		        "sAjaxSource": "{{ URL::to('admin/roles/data') }}"
 			});
 
 			$("#roles_filter input").addClass("form-control inline-control input-sm");
