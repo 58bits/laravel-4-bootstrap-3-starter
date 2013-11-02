@@ -80,7 +80,7 @@ Entrust::routeNeedsPermission( 'admin/user*', 'manage_users', Redirect::to('/') 
 //Entrust::routeNeedsPermission( 'admin/role*', 'manage_roles', Redirect::to('/') );
 
 // Check for permissions on widget actions
-Entrust::routeNeedsPermission( 'widget*', 'manage_widgets', Redirect::to('/') );
+Entrust::routeNeedsPermission( 'widgets*', 'manage_widgets', Redirect::to('/') );
 
 /*
 |--------------------------------------------------------------------------

@@ -21,10 +21,10 @@
 <div class="form-group">
 	<div class="controls">
 		@if ($action == 'show')
-			<a href="{{{ URL::to('widget') }}}" class="btn btn-primary">Close</a>
-			<a href="{{{ URL::to('widget/' . $widget->id . '/edit') }}}" class="btn btn-primary">Edit Widget</a>
+			<a href="{{{ URL::to('widgets') }}}" class="btn btn-primary">Close</a>
+			<a href="{{{ URL::to('widgets/' . $widget->id . '/edit') }}}" class="btn btn-primary">Edit Widget</a>
 		@else
-			<a href="{{{ URL::to('widget') }}}" class="btn btn-primary">Cancel</a>
+			<a href="{{{ URL::to('widgets') }}}" class="btn btn-primary">Cancel</a>
 			<button type="submit" class="btn btn-danger">Delete</button>
 		@endif
 	</div>

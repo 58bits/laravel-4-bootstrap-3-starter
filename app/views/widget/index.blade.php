@@ -12,7 +12,7 @@
 			{{{ $title }}}
 
 			<div class="pull-right">
-				<a href="{{{ URL::to('widget/create') }}}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span> Create New Widget</a>
+				<a href="{{{ URL::to('widgets/create') }}}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span> Create New Widget</a>
 			</div>
 		</h3>
 	</div>
@@ -49,7 +49,7 @@
 				},
 				"bProcessing": true,
 		        "bServerSide": true,
-		        "sAjaxSource": "{{ URL::to('widget/data') }}"
+		        "sAjaxSource": "{{ URL::to('widgets/data') }}"
 			});
 
 			$("#roles_filter input").addClass("form-control inline-control input-sm");

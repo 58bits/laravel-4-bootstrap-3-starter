@@ -1,8 +1,8 @@
 {{-- Create Role Form --}}
 @if (isset($widget))
-{{ Form::open(array('url' => URL::to('widget') . '/' . $widget->id, 'method' => 'put', 'class' => 'bf')) }}
+{{ Form::open(array('url' => URL::to('widgets') . '/' . $widget->id, 'method' => 'put', 'class' => 'bf')) }}
 @else
-{{ Form::open(array('url' => URL::to('widget'), 'method' => 'post', 'class' => 'bf')) }}
+{{ Form::open(array('url' => URL::to('widgets'), 'method' => 'post', 'class' => 'bf')) }}
 @endif
 
 	<!-- widget name -->
@@ -28,7 +28,7 @@
 	<!-- Form Actions -->
 	<div class="form-group">
 		<div class="controls">
-			<a href="{{{ URL::to('admin/widget') }}}" class="btn btn-primary">Cancel</a>
+			<a href="{{{ URL::to('widgets') }}}" class="btn btn-primary">Cancel</a>
 			<button type="submit" class="btn btn-success">OK</button>
 		</div>
 	</div>

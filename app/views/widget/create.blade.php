@@ -15,7 +15,7 @@
 				{{{ $title }}}
 
 				<div class="pull-right">
-					<a href="{{{ URL::to('widget') }}}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+					<a href="{{{ URL::to('widgets') }}}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
 				</div>
 			</h3>
 		</div>

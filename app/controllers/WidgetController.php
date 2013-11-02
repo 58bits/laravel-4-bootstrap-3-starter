@@ -106,18 +106,18 @@ class WidgetController extends BaseController {
             if ( $this->widget->id )
             {
                 // Redirect to the new widget page
-                return Redirect::to('widget/' . $this->widget->id . '/edit')->with('success', Lang::get('widget/messages.create.success'));
+                return Redirect::to('widgets/' . $this->widget->id . '/edit')->with('success', Lang::get('widget/messages.create.success'));
 
             }
             else {
                 // Redirect to the widget create page
                 //var_dump($this->widget);
-                return Redirect::to('widget/create')->with('error', Lang::get('widget/messages.create.error'));
+                return Redirect::to('widgets/create')->with('error', Lang::get('widget/messages.create.error'));
             }
         }
         else {
             // Form validation failed
-            return Redirect::to('widget/create')->withInput()->withErrors($validator);
+            return Redirect::to('widgets/create')->withInput()->withErrors($validator);
         }
     }
 
@@ -137,11 +137,11 @@ class WidgetController extends BaseController {
         else
         {
             // Redirect to the widget management page
-            return Redirect::to('widget')->with('error', Lang::get('widget/messages.does_not_exist'));
+            return Redirect::to('widgets')->with('error', Lang::get('widget/messages.does_not_exist'));
         }
 
         // Title
-        $title = Lang::get('widget/title.widget_update');
+        $title = Lang::get('widgets/title.widget_update');
 
         // Show the page
         return View::make('widget/edit', compact('widget', 'title'));
@@ -174,17 +174,17 @@ class WidgetController extends BaseController {
             if ($widget->save($rules))
             {
                 // Redirect to the widget page
-                return Redirect::to('widget/' . $widget->id . '/edit')->with('success', Lang::get('widget/messages.update.success'));
+                return Redirect::to('widgets/' . $widget->id . '/edit')->with('success', Lang::get('widget/messages.update.success'));
             }
             else
             {
                 // Redirect to the widget page
-                return Redirect::to('widget/' . $widget->id . '/edit')->with('error', Lang::get('widget/messages.update.error'));
+                return Redirect::to('widgets/' . $widget->id . '/edit')->with('error', Lang::get('widget/messages.update.error'));
             }
         }
         else {
             // Form validation failed
-            return Redirect::to('widget/' . $widget->id . '/edit')->withInput()->withErrors($validator);
+            return Redirect::to('widgets/' . $widget->id . '/edit')->withInput()->withErrors($validator);
         }
     }
 
@@ -207,7 +207,7 @@ class WidgetController extends BaseController {
         else
         {
             // Redirect to the widget management page
-            return Redirect::to('widget')->with('error', Lang::get('widget/messages.does_not_exist'));
+            return Redirect::to('widgets')->with('error', Lang::get('widget/messages.does_not_exist'));
         }
 
         // Show the record
@@ -224,11 +224,11 @@ class WidgetController extends BaseController {
         // Was the widget deleted?
         if($widget->delete()) {
             // Redirect to the widget management page
-            return Redirect::to('widget')->with('success', Lang::get('widget/messages.delete.success'));
+            return Redirect::to('widgets')->with('success', Lang::get('widget/messages.delete.success'));
         }
 
         // There was a problem deleting the widget
-        return Redirect::to('widget')->with('error', Lang::get('widget/messages.delete.error'));            
+        return Redirect::to('widgets')->with('error', Lang::get('widget/messages.delete.error'));            
     }
 
     /**
@@ -248,9 +248,9 @@ class WidgetController extends BaseController {
                     Action <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="{{{ URL::to(\'widget/\' . $id ) }}}">{{{ Lang::get(\'button.show\') }}}</a></li>
-                    <li><a href="{{{ URL::to(\'widget/\' . $id . \'/edit\' ) }}}">{{{ Lang::get(\'button.edit\') }}}</a></li>
-                    <li><a href="{{{ URL::to(\'widget/\' . $id . \'/delete\' ) }}}">{{{ Lang::get(\'button.delete\') }}}</a></li>
+                    <li><a href="{{{ URL::to(\'widgets/\' . $id ) }}}">{{{ Lang::get(\'button.show\') }}}</a></li>
+                    <li><a href="{{{ URL::to(\'widgets/\' . $id . \'/edit\' ) }}}">{{{ Lang::get(\'button.edit\') }}}</a></li>
+                    <li><a href="{{{ URL::to(\'widgets/\' . $id . \'/delete\' ) }}}">{{{ Lang::get(\'button.delete\') }}}</a></li>
                   </ul>
                 </div>')
 
