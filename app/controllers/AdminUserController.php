@@ -75,7 +75,7 @@ class AdminUserController extends AdminController {
         }
         else
         {
-            return Redirect::to('admin/user')->with('error', Lang::get('admin/user/messages.does_not_exist'));
+            return Redirect::to('admin/users')->with('error', Lang::get('admin/user/messages.does_not_exist'));
         }
     }
 
@@ -140,14 +140,14 @@ class AdminUserController extends AdminController {
 
             // Redirect to the new user page
             //return Redirect::to('users/' . $this->user->id . '/edit')->with('success', Lang::get('admin/users/messages.create.success'));
-            return Redirect::to('admin/user')->with('success', Lang::get('admin/user/messages.create.success'));
+            return Redirect::to('admin/users')->with('success', Lang::get('admin/user/messages.create.success'));
         }
         else
         {
             // Get validation errors (see Ardent package)
             $error = $this->user->errors()->all();
 
-            return Redirect::to('admin/user/create')
+            return Redirect::to('admin/users/create')
                 ->withInput(Input::except('password'))
                 ->with( 'error', $error );
         }
@@ -173,7 +173,7 @@ class AdminUserController extends AdminController {
         }
         else
         {
-            return Redirect::to('admin/user')->with('error', Lang::get('admin/user/messages.does_not_exist'));
+            return Redirect::to('admin/users')->with('error', Lang::get('admin/user/messages.does_not_exist'));
         }
     }
 
@@ -252,10 +252,10 @@ class AdminUserController extends AdminController {
 
             if(empty($error)) {
                 // Redirect to the new user page
-                return Redirect::to('admin/user/' . $user->id . '/edit')->with('success', Lang::get('admin/user/messages.edit.success'));
+                return Redirect::to('admin/users/' . $user->id . '/edit')->with('success', Lang::get('admin/user/messages.edit.success'));
             } else {
                 //return Redirect::to('admin/users/' . $user->id . '/edit')->with('error', Lang::get('admin/users/messages.edit.failure'));
-                return Redirect::to('admin/user/' . $user->id . '/edit')
+                return Redirect::to('admin/users/' . $user->id . '/edit')
                     ->withInput(Input::except('password','password_confirmation'))
                     ->with( 'error', $error );
             }
@@ -263,7 +263,7 @@ class AdminUserController extends AdminController {
         else
         {
             // Form validation failed
-            return Redirect::to('admin/user/' . $user->id . '/edit')->withInput()->withErrors($validator);
+            return Redirect::to('admin/users/' . $user->id . '/edit')->withInput()->withErrors($validator);
         }        
     }
 
@@ -287,7 +287,7 @@ class AdminUserController extends AdminController {
         }
         else
         {
-            return Redirect::to('admin/user')->with('error', Lang::get('admin/user/messages.does_not_exist'));
+            return Redirect::to('admin/users')->with('error', Lang::get('admin/user/messages.does_not_exist'));
         }
     }
 
@@ -302,7 +302,7 @@ class AdminUserController extends AdminController {
         if ($user->id === Confide::user()->id)
         {
             // Redirect to the user management page
-            return Redirect::to('admin/user')->with('error', Lang::get('admin/user/messages.delete.impossible'));
+            return Redirect::to('admin/users')->with('error', Lang::get('admin/user/messages.delete.impossible'));
         }
 
         AssignedRoles::where('user_id', $user->id)->delete();
@@ -315,12 +315,12 @@ class AdminUserController extends AdminController {
         if (empty($user) )
         {
             // TODO needs to delete all of that user's content
-            return Redirect::to('admin/user')->with('success', Lang::get('admin/user/messages.delete.success'));
+            return Redirect::to('admin/users')->with('success', Lang::get('admin/user/messages.delete.success'));
         }
         else
         {
             // There was a problem deleting the user
-            return Redirect::to('admin/user')->with('error', Lang::get('admin/user/messages.delete.error'));
+            return Redirect::to('admin/users')->with('error', Lang::get('admin/user/messages.delete.error'));
         }
     }
 
@@ -349,11 +349,11 @@ class AdminUserController extends AdminController {
                         Action <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{{ URL::to(\'admin/user/\' . $id ) }}}">{{{ Lang::get(\'button.show\') }}}</a></li>
-                        <li><a href="{{{ URL::to(\'admin/user/\' . $id . \'/edit\' ) }}}">{{{ Lang::get(\'button.edit\') }}}</a></li>
+                        <li><a href="{{{ URL::to(\'admin/users/\' . $id ) }}}">{{{ Lang::get(\'button.show\') }}}</a></li>
+                        <li><a href="{{{ URL::to(\'admin/users/\' . $id . \'/edit\' ) }}}">{{{ Lang::get(\'button.edit\') }}}</a></li>
                         @if($username == \'admin\')
                         @else
-                            <li><a href="{{{ URL::to(\'admin/user/\' . $id . \'/delete\' ) }}}">{{{ Lang::get(\'button.delete\') }}}</a></li>
+                            <li><a href="{{{ URL::to(\'admin/users/\' . $id . \'/delete\' ) }}}">{{{ Lang::get(\'button.delete\') }}}</a></li>
                         @endif
                       </ul>
                     </div>')

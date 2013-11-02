@@ -84,7 +84,7 @@
                     Admin Tasks <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu">
-                    <li {{ (Request::is('admin/user*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/user') }}}">Users</a></li>
+                    <li {{ (Request::is('admin/user*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/users') }}}">Users</a></li>
                     <li {{ (Request::is('role*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/role') }}}">Roles</a></li>
                   </ul>
                  </li>

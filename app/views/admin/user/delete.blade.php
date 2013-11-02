@@ -14,7 +14,7 @@
                 {{{ $title }}}
 
                 <div class="pull-right">
-                    <a href="{{{ URL::to('admin/user') }}}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+                    <a href="{{{ URL::to('admin/users') }}}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
                 </div>
             </h3>
         </div>
@@ -24,7 +24,7 @@
         <!-- ./ notifications -->
         
         {{-- Delete User Form --}}
-        {{ Form::open(array('url' => URL::to('admin/user') . '/' . $user->id, 'method' => 'delete', 'class' => 'bf')) }}
+        {{ Form::open(array('url' => URL::to('admin/users') . '/' . $user->id, 'method' => 'delete', 'class' => 'bf')) }}
         
            @include('admin/user/_details', compact('user'))
 

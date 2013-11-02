@@ -11,7 +11,7 @@
 		<h3>
 			{{{ $title }}}
 		<div class="pull-right">
-				<a href="{{{ URL::to('admin/user/create') }}}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span> Create New User</a>
+				<a href="{{{ URL::to('admin/users/create') }}}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span> Create New User</a>
 		</div>
 		</h3>
 		
@@ -52,7 +52,7 @@
 				},
 				"bProcessing": true,
 		        "bServerSide": true,
-		        "sAjaxSource": "{{ URL::to('admin/user/data') }}"
+		        "sAjaxSource": "{{ URL::to('admin/users/data') }}"
 			});
 
 			$("#users_filter input").addClass("form-control inline-control input-sm");

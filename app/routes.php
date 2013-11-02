@@ -15,7 +15,7 @@
  *  Route model binding
  *  ------------------------------------------
  */
-Route::model('user', 'User');
+Route::model('users', 'User');
 Route::model('role', 'Role');
 Route::model('widgets', 'Widget');
 
@@ -46,7 +46,7 @@ Route::group(array('before' => 'auth'), function()
 
 	// Datatables Ajax route.
 	// NOTE: We must define this route first as it is more specific than
-	// the default show resource route for /users/{user_id}
+	// the default show resource route for /widgets/{widgets}
 	Route::get('widgets/data', 'WidgetController@data');
 	
 	// Pre-baked resource controller actions for index, create, store, 
@@ -54,7 +54,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::resource('widgets', 'WidgetController');
 	
 	// Our special delete confirmation route - uses the show/details view.
-	// NOTE: For model biding above to work - the plural paramametee {widgets} needs
+	// NOTE: For model biding above to work - the plural paramameter {widgets} needs
 	// to be used.
 	Route::get('widgets/{widgets}/delete', 		'WidgetController@delete');
 });
@@ -75,14 +75,16 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 	// Datatables Ajax route.
 	// NOTE: We must define this route first as it is more specific than
 	// the default show resource route for /users/{user_id}
-	Route::get('user/data',            	'AdminUserController@data');
+	Route::get('users/data',            	'AdminUserController@data');
 	
 	// Pre-baked resource controller actions for index, create, store, 
 	// show, edit, update, destroy
-	Route::resource('user', 				'AdminUserController');
+	Route::resource('users', 				'AdminUserController');
 	
 	//Our special delete confirmation route - uses the show/details view.
-	Route::get('user/{user}/delete', 		'AdminUserController@delete');
+	// NOTE: For model biding above to work - the plural paramameter {users} needs
+	// to be used.
+	Route::get('users/{users}/delete', 		'AdminUserController@delete');
 	
 	/** ------------------------------------------
  	*  Roles

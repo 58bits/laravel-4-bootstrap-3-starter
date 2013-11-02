@@ -49,10 +49,10 @@
 <div class="form-group">
 	<div class="controls">
 		@if ($action == 'show')
-			<a href="{{{ URL::to('admin/user') }}}" class="btn btn-primary">Close</a>
-			<a href="{{{ URL::to('admin/user/' . $user->id . '/edit') }}}" class="btn btn-primary">Edit User</a>
+			<a href="{{{ URL::to('admin/users') }}}" class="btn btn-primary">Close</a>
+			<a href="{{{ URL::to('admin/users/' . $user->id . '/edit') }}}" class="btn btn-primary">Edit User</a>
 		@else
-			<a href="{{{ URL::to('admin/user') }}}" class="btn btn-primary">Cancel</a>
+			<a href="{{{ URL::to('admin/users') }}}" class="btn btn-primary">Cancel</a>
 			<button type="submit" class="btn btn-danger">Delete</button>
 		@endif
 	</div>

@@ -1,8 +1,8 @@
 {{-- Create User Form --}}
 @if (isset($user))
-{{ Form::open(array('url' => URL::to('admin/user') . '/' . $user->id, 'method' => 'put', 'class' => 'bf')) }}
+{{ Form::open(array('url' => URL::to('admin/users') . '/' . $user->id, 'method' => 'put', 'class' => 'bf')) }}
 @else
-{{ Form::open(array('url' => URL::to('admin/user'), 'method' => 'post', 'class' => 'bf')) }}
+{{ Form::open(array('url' => URL::to('admin/users'), 'method' => 'post', 'class' => 'bf')) }}
 @endif
 
 <div class="row">
@@ -105,7 +105,7 @@
 	<!-- Form Actions -->
 	<div class="form-group">
 		<div class="controls">
-			<a href="{{{ URL::to('admin/user') }}}" class="btn btn-primary">Cancel</a>
+			<a href="{{{ URL::to('admin/users') }}}" class="btn btn-primary">Cancel</a>
 			<button type="submit" class="btn btn-success">OK</button>
 		</div>
 	</div>
