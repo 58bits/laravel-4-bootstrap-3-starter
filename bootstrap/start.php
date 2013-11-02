@@ -28,7 +28,7 @@ $app->redirectIfTrailingSlash();
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('AGBWKSMAC01.local'),
+	'local' => array('your-dev-machine-name'),
     'staging' => array('your-staging-machine-name'),
     'production' => array('your-production-machine-name'),
 

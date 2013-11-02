@@ -39,7 +39,11 @@ Here's a description of the differences from the original starter site:
 
 Clone this repository `git clone git@github.com:58bits/laravel-4-bootstrap-3-starter.git myproject`
 
-And then follow the excellent instructions over at [Laravel 4 Bootstrap Starter Site](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site). Once the migrations are run -  Admin:admin, User:user accounts will be created.
+And then follow the excellent instructions over at [Laravel 4 Bootstrap Starter Site](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site#how-to-install). 
+
+Note: substitue 'laravel' for 'myproject', or whatever project directory you created when you cloned this repo. You can also skip the 'Build Assests' Step 9 (since we're not using Basset).
+
+Once the migrations are run and you've seeded the database -  Admin:admin, User:user accounts will be created as well as default permissions.
 
 The current app/config/local/database.php file expects a MySQL database connection with a database named: lv4bs3_www, user: lv4bs3 and password: test. Update these to suit your own dev setup.
 
