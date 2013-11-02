@@ -1,11 +1,8 @@
 <?php
 /*
 |--------------------------------------------------------------------------
-| Confide Controller Template
+| AdminUserController
 |--------------------------------------------------------------------------
-|
-| This is the default Confide controller template for controlling user
-| authentication. Feel free to change to your needs.
 |
 */
 

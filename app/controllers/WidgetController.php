@@ -1,11 +1,16 @@
 <?php
 /*
 |--------------------------------------------------------------------------
-| Confide Controller Template
+| Widget Controller
 |--------------------------------------------------------------------------
 |
-| This is the default Confide controller template for controlling user
-| authentication. Feel free to change to your needs.
+| An example controller that uses the pre-baked RESTful resource controller 
+| actions for index, create, store, show, edit, update, destroy, as well as a 
+| delete method to show the record before deletion.
+|
+| See routes.php  -> 
+| Route::resource('widget', 'WidgetController');
+| Route::get('widget/{widget}/delete', 'WidgetController@delete');
 |
 */
 
