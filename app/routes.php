@@ -25,7 +25,7 @@ Route::get('/', 'HomeController@showWelcome');
 // Confide routes - would prefer to create a session controller, and then a seperate
 // controller for user settings.
 Route::get('user',                         'UserController@index');
-Route::post('user/{user}/update', 'UserController@update')->where('user', '[0-9]+');
+Route::post('user/{user}/update', 		   'UserController@update')->where('user', '[0-9]+');
 Route::get( 'user/login',                  'UserController@login');
 Route::post('user/login',                  'UserController@do_login');
 Route::get( 'user/confirm/{code}',         'UserController@confirm');
