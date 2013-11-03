@@ -37,18 +37,19 @@ class WidgetControllerTest extends TestCase {
      */
 	public function testShow()
 	{
-		// $this->mock
-		// ->shouldReceive('::find')
-		// ->once()
-		// ->andSet('id', 1);
+		//$this->mock->shouldReceive('find')->with(1)->once()->andReturn(array('id'=>1));
 
-		// //$this->call('GET', 'widgets/1');
-		// $this->action('GET', 'WidgetController@show', array(
-		// 	'widget' => 1
-		// 	));
+		$this->mock
+		->shouldReceive('find')
+		->once()
+		->andSet('id', 1);
 
-		// $this->assertTrue($this->client->getResponse()->isOk());
-		// $this->assertViewHas('title');
+		//$this->call('GET', 'widgets/1');
+		$this->action('GET', 'WidgetController@show', array(
+			'widgets' => 1
+			));
+
+		$this->assertTrue($this->client->getResponse()->isOk());
 	}
 
 	/**
