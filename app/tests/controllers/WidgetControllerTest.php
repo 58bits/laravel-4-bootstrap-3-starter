@@ -27,7 +27,6 @@ class WidgetControllerTest extends TestCase
     public function testIndex()
     {
         $this->call('GET', 'widgets');
-
         $this->assertTrue($this->client->getResponse()->isOk());
         $this->assertViewHas('title');
     }
@@ -37,19 +36,17 @@ class WidgetControllerTest extends TestCase
      */
     public function testShow()
     {
-        //$this->mock->shouldReceive('find')->with(1)->once()->andReturn(array('id'=>1));
-
         $this->mock
         ->shouldReceive('find')
+        ->with(1)
         ->once()
-        ->andSet('id', 1);
+        ->andReturn((object)array('id'=>1, 'name'=>'Widget-name','description'=>'Widget description'));
 
-        //$this->call('GET', 'widgets/1');
-        $this->action('GET', 'WidgetController@show', array(
-            'widgets' => 1
-            ));
-
+        $crawler = $this->client->request('GET', 'widgets/1');
+        
         $this->assertTrue($this->client->getResponse()->isOk());
+        $this->assertCount(1, $crawler->filter('h3:contains("Widget Details")'));
+        $this->assertViewHas('title');
     }
 
     /**
@@ -62,7 +59,6 @@ class WidgetControllerTest extends TestCase
         $this->assertTrue($this->client->getResponse()->isOk());
         $this->assertViewHas('title');
         $this->assertCount(1, $crawler->filter('h3:contains("Create a New Widget")'));
-
     }
 
     /**
@@ -88,7 +84,6 @@ class WidgetControllerTest extends TestCase
      */
     public function testStoreFail()
     {
-
         $this->call('POST', 'widgets', array(
             'name' => '',
             'description' => ''
@@ -96,6 +91,6 @@ class WidgetControllerTest extends TestCase
 
         $this->assertRedirectedToRoute('widgets.create');
         $this->assertSessionHasErrors(['name']);
-
+        $this->assertSessionHasErrors(['description']);
     }
 }

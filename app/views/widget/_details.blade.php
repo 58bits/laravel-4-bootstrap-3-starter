@@ -1,4 +1,4 @@
-{{-- Role Details --}}
+{{-- Widget Details --}}
 <!-- name -->
 <div class="form-group">
 	<label class="control-label" for="name">Name</label>

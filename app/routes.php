@@ -17,7 +17,8 @@
  */
 Route::model('users', 'User');
 Route::model('roles', 'Role');
-Route::model('widgets', 'Widget');
+//Route model binding makes controller testing hard with Mockery.
+//Route::model('widgets', 'Widget');
 
 // Home route
 Route::get('/', 'HomeController@showWelcome');

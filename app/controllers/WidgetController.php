@@ -55,13 +55,21 @@ class WidgetController extends BaseController
      *
      * @return View
      */
-    public function show($widget)
+    public function show($id)
     {
-        // Title
-        $title = Lang::get('widget/title.widget_show');
+        $widget = $this->widget->find($id);
 
-        // Show the page
-        return View::make('widget/show', compact('widget', 'title'));
+        if ($widget->id) {
+            // Title
+            $title = Lang::get('widget/title.widget_show');
+
+            // Show the page
+            return View::make('widget/show', compact('widget', 'title'));
+
+        } else {
+            // Redirect to the widget management page
+            return Redirect::to('widgets')->with('error', Lang::get('widget/messages.does_not_exist'));
+        }
     }
 
     /**
@@ -124,8 +132,10 @@ class WidgetController extends BaseController
      * @param $widget
      * @return Response
      */
-    public function edit($widget)
+    public function edit($id)
     {
+        $widget = $this->widget->find($id);
+
         if ($widget) {
 
         } else {
@@ -146,8 +156,10 @@ class WidgetController extends BaseController
      * @param $widget
      * @return Response
      */
-    public function update($widget)
+    public function update($id)
     {
+        $widget = $this->widget->find($id);
+
         $rules = array(
                 'name'=> 'required|alpha_dash|unique:widgets,name,' . $widget->id,
                 'description' => 'required'
@@ -181,8 +193,10 @@ class WidgetController extends BaseController
      * @param $widget
      * @return Response
      */
-    public function delete($widget)
+    public function delete($id)
     {
+        $widget = $this->widget->find($id);
+
         // Title
         $title = Lang::get('widget/title.widget_delete');
 
@@ -202,8 +216,10 @@ class WidgetController extends BaseController
      * @internal param $id
      * @return Response
      */
-    public function destroy($widget)
+    public function destroy($id)
     {
+        $widget = $this->widget->find($id);
+
         // Was the widget deleted?
         if ($widget->delete()) {
             // Redirect to the widget management page
