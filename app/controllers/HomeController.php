@@ -12,14 +12,14 @@
 |
 */
 
-class HomeController extends BaseController {
+class HomeController extends BaseController
+{
+    public function showWelcome()
+    {
+        return View::make('home');
+    }
 
-	public function showWelcome()
-	{
-		return View::make('home');
-	}
-
-	public function showSecret()
+    public function showSecret()
     {
         return View::make('secret');
     }

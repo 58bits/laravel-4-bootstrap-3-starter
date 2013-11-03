@@ -4,18 +4,18 @@
 | Widget Controller
 |--------------------------------------------------------------------------
 |
-| An example controller that uses the pre-baked RESTful resource controller 
-| actions for index, create, store, show, edit, update, destroy, as well as a 
+| An example controller that uses the pre-baked RESTful resource controller
+| actions for index, create, store, show, edit, update, destroy, as well as a
 | delete method to show the record before deletion.
 |
-| See routes.php  -> 
+| See routes.php  ->
 | Route::resource('widget', 'WidgetController');
 | Route::get('widget/{widget}/delete', 'WidgetController@delete');
 |
 */
 
-class WidgetController extends BaseController {
-
+class WidgetController extends BaseController
+{
     /**
      * User Model
      * @var User
@@ -31,7 +31,7 @@ class WidgetController extends BaseController {
         parent::__construct();
         $this->widget = $widget;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -95,8 +95,7 @@ class WidgetController extends BaseController {
         $validator = Validator::make(Input::all(), $rules);
 
         // Check if the form validates with success
-        if ($validator->passes())
-        {
+        if ($validator->passes()) {
             // Get the inputs, with some exceptions
             $inputs = Input::except('csrf_token');
 
@@ -104,25 +103,21 @@ class WidgetController extends BaseController {
             $this->widget->description = $inputs['description'];
             $this->widget->save($rules);
 
-            if ( $this->widget->id )
-            {
+            if ($this->widget->id) {
                 // Redirect to the new widget page
                 return Redirect::to('widgets')->with('success', Lang::get('widget/messages.create.success'));
 
-            }
-            else {
+            } else {
                 // Redirect to the widget create page
                 //var_dump($this->widget);
                 return Redirect::to('widgets/create')->with('error', Lang::get('widget/messages.create.error'));
             }
-        }
-        else {
+        } else {
             // Form validation failed
             return Redirect::to('widgets/create')->withInput()->withErrors($validator);
         }
     }
 
-    
     /**
      * Show the form for editing the specified resource.
      *
@@ -131,18 +126,15 @@ class WidgetController extends BaseController {
      */
     public function edit($widget)
     {
-        if($widget)
-        {
-            
-        }
-        else
-        {
+        if ($widget) {
+
+        } else {
             // Redirect to the widget management page
             return Redirect::to('widgets')->with('error', Lang::get('widget/messages.does_not_exist'));
         }
 
         // Title
-        $title = Lang::get('widgets/title.widget_update');
+        $title = Lang::get('widget/title.widget_update');
 
         // Show the page
         return View::make('widget/edit', compact('widget', 'title'));
@@ -166,29 +158,23 @@ class WidgetController extends BaseController {
         $validator = Validator::make(Input::all(), $rules);
 
         // Check if the form validates with success
-        if ($validator->passes())
-        {
+        if ($validator->passes()) {
             $widget->name        = Input::get('name');
             $widget->description = Input::get('description');
 
             // Was the widget updated?
-            if ($widget->save($rules))
-            {
+            if ($widget->save($rules)) {
                 // Redirect to the widget page
                 return Redirect::to('widgets/' . $widget->id . '/edit')->with('success', Lang::get('widget/messages.update.success'));
-            }
-            else
-            {
+            } else {
                 // Redirect to the widget page
                 return Redirect::to('widgets/' . $widget->id . '/edit')->with('error', Lang::get('widget/messages.update.error'));
             }
-        }
-        else {
+        } else {
             // Form validation failed
             return Redirect::to('widgets/' . $widget->id . '/edit')->withInput()->withErrors($validator);
         }
     }
-
 
     /**
      * Remove user page.
@@ -201,12 +187,9 @@ class WidgetController extends BaseController {
         // Title
         $title = Lang::get('widget/title.widget_delete');
 
-        if($widget->id)
-        {
-            
-        }
-        else
-        {
+        if ($widget->id) {
+
+        } else {
             // Redirect to the widget management page
             return Redirect::to('widgets')->with('error', Lang::get('widget/messages.does_not_exist'));
         }
@@ -223,13 +206,13 @@ class WidgetController extends BaseController {
     public function destroy($widget)
     {
         // Was the widget deleted?
-        if($widget->delete()) {
+        if ($widget->delete()) {
             // Redirect to the widget management page
             return Redirect::to('widgets')->with('success', Lang::get('widget/messages.delete.success'));
         }
 
         // There was a problem deleting the widget
-        return Redirect::to('widgets')->with('error', Lang::get('widget/messages.delete.error'));            
+        return Redirect::to('widgets')->with('error', Lang::get('widget/messages.delete.error'));
     }
 
     /**

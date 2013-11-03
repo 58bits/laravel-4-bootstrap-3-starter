@@ -9,8 +9,8 @@
 |
 */
 
-class UserController extends BaseController {
-
+class UserController extends BaseController
+{
     /**
      * User Model
      * @var User
@@ -26,7 +26,7 @@ class UserController extends BaseController {
         parent::__construct();
         $this->user = $user;
     }
-    
+
     /**
      * Users settings page
      *
@@ -34,27 +34,26 @@ class UserController extends BaseController {
      */
     public function index()
     {
-    
+
         list($user,$redirect) = $this->user->checkAuthAndRedirect('user');
-        if($redirect){return $redirect;}
+        if ($redirect) {return $redirect;}
 
         // Show the page
         return View::make('user/index', compact('user'));
     }
-
 
     /**
      * Update a user
      *
      */
     public function update($user)
-    { 
+    {
         if ($user->id != Auth::user()->id) {
             return Redirect::to('/')
                 ->with( 'error', 'access forbidden' );
         }
 
-        // If the 'admin' user is updating their own settings, the username will have been 
+        // If the 'admin' user is updating their own settings, the username will have been
         // disabled in the form, and so won't be present in the form POST values.
         // We'll change the rules here accordingly. The admin user cannot be renamed
         // or deleted.
@@ -68,8 +67,7 @@ class UserController extends BaseController {
               'password' => 'between:4,11|confirmed',
               'password_confirmation' => 'between:4,11',
               );
-        }
-        else {
+        } else {
            // Validate the inputs
           $rules = array(
               'username'=> 'required|alpha_dash|unique:users,username,'. $user->id,
@@ -82,8 +80,7 @@ class UserController extends BaseController {
 
         $validator = Validator::make(Input::all(), $rules);
 
-        if ($validator->passes())
-        {
+        if ($validator->passes()) {
             $oldUser = clone $user;
             if ($user->username != 'admin') {
               $user->username = Input::get( 'username' );
@@ -93,8 +90,8 @@ class UserController extends BaseController {
             $password = Input::get( 'password' );
             $passwordConfirmation = Input::get( 'password_confirmation' );
 
-            if(!empty($password)) {
-                if($password === $passwordConfirmation) {
+            if (!empty($password)) {
+                if ($password === $passwordConfirmation) {
                     $user->password = $password;
                     // The password confirmation will be removed from model
                     // before saving. This field will be used in Ardent's
@@ -113,7 +110,7 @@ class UserController extends BaseController {
             $user->amend($rules);
             $error = $user->errors()->all();
 
-            if(empty($error)) {
+            if (empty($error)) {
                 // Redirect to the new user page
                 return Redirect::to('user')->with('success', Lang::get('admin/users/messages.edit.success'));
             } else {
@@ -122,12 +119,10 @@ class UserController extends BaseController {
                     ->withInput(Input::except('password','password_confirmation'))
                     ->with( 'error', $error );
             }
-        }
-        else
-        {
+        } else {
             // Form validation failed
             return Redirect::to('user')->withInput()->withErrors($validator);
-        }        
+        }
     }
 
     /**
@@ -136,14 +131,11 @@ class UserController extends BaseController {
      */
     public function login()
     {
-        if( Confide::user() )
-        {
-            // If user is logged, redirect to internal 
+        if ( Confide::user() ) {
+            // If user is logged, redirect to internal
             // page, change it to '/admin', '/dashboard' or something
             return Redirect::to('/');
-        }
-        else
-        {
+        } else {
             return View::make('user/login');
         }
     }
@@ -164,34 +156,26 @@ class UserController extends BaseController {
         // If you wish to only allow login from confirmed users, call logAttempt
         // with the second parameter as true.
         // logAttempt will check if the 'email' perhaps is the username.
-        if ( Confide::logAttempt( $input ) ) 
-        {
+        if ( Confide::logAttempt( $input ) ) {
             // If the session 'loginRedirect' is set, then redirect
             // to that route. Otherwise redirect to '/'
             $r = Session::get('loginRedirect');
-            if (!empty($r))
-            {
+            if (!empty($r)) {
                 Session::forget('loginRedirect');
+
                 return Redirect::to($r);
             }
-            
+
             return Redirect::to('/'); // change it to '/admin', '/dashboard' or something
-        }
-        else
-        {
+        } else {
             $user = new User;
 
             // Check if there was too many login attempts
-            if( Confide::isThrottled( $input ) )
-            {
+            if ( Confide::isThrottled( $input ) ) {
                 $err_msg = Lang::get('confide::confide.alerts.too_many_attempts');
-            }
-            elseif( $user->checkUserExists( $input ) and ! $user->isConfirmed( $input ) )
-            {
+            } elseif ( $user->checkUserExists( $input ) and ! $user->isConfirmed( $input ) ) {
                 $err_msg = Lang::get('confide::confide.alerts.not_confirmed');
-            }
-            else
-            {
+            } else {
                 $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
             }
 
@@ -204,19 +188,18 @@ class UserController extends BaseController {
     /**
      * Attempt to confirm account with code
      *
-     * @param  string  $code
+     * @param string $code
      */
     public function confirm( $code )
     {
-        if ( Confide::confirm( $code ) )
-        {
+        if ( Confide::confirm( $code ) ) {
             $notice_msg = Lang::get('confide::confide.alerts.confirmation');
+
                         return Redirect::action('UserController@login')
                             ->with( 'notice', $notice_msg );
-        }
-        else
-        {
+        } else {
             $error_msg = Lang::get('confide::confide.alerts.wrong_confirmation');
+
                         return Redirect::action('UserController@login')
                             ->with( 'error', $error_msg );
         }
@@ -237,15 +220,14 @@ class UserController extends BaseController {
      */
     public function do_forgot_password()
     {
-        if( Confide::forgotPassword( Input::get( 'email' ) ) )
-        {
+        if ( Confide::forgotPassword( Input::get( 'email' ) ) ) {
             $notice_msg = Lang::get('confide::confide.alerts.password_forgot');
+
                         return Redirect::action('UserController@login')
                             ->with( 'notice', $notice_msg );
-        }
-        else
-        {
+        } else {
             $error_msg = Lang::get('confide::confide.alerts.wrong_password_forgot');
+
                         return Redirect::action('UserController@forgot_password')
                             ->withInput()
                 ->with( 'error', $error_msg );
@@ -275,15 +257,14 @@ class UserController extends BaseController {
         );
 
         // By passing an array with the token, password and confirmation
-        if( Confide::resetPassword( $input ) )
-        {
+        if ( Confide::resetPassword( $input ) ) {
             $notice_msg = Lang::get('confide::confide.alerts.password_reset');
+
                         return Redirect::action('UserController@login')
                             ->with( 'notice', $notice_msg );
-        }
-        else
-        {
+        } else {
             $error_msg = Lang::get('confide::confide.alerts.wrong_password_reset');
+
                         return Redirect::action('UserController@reset_password', array('token'=>$input['token']))
                             ->withInput()
                 ->with( 'error', $error_msg );
@@ -297,7 +278,7 @@ class UserController extends BaseController {
     public function logout()
     {
         Confide::logout();
-        
+
         return Redirect::to('/');
     }
 

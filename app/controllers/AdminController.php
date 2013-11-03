@@ -6,8 +6,8 @@
 |
 */
 
-class AdminController extends BaseController {
-
+class AdminController extends BaseController
+{
     /**
      * Initializer.
      *

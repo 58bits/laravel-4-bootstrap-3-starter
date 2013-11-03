@@ -6,8 +6,8 @@
 |
 */
 
-class AdminUserController extends AdminController {
-
+class AdminUserController extends AdminController
+{
     /**
      * User Model
      * @var User
@@ -28,8 +28,8 @@ class AdminUserController extends AdminController {
 
     /**
      * Inject the models.
-     * @param User $user
-     * @param Role $role
+     * @param User       $user
+     * @param Role       $role
      * @param Permission $permission
      */
     public function __construct(User $user, Role $role, Permission $permission)
@@ -39,7 +39,7 @@ class AdminUserController extends AdminController {
         $this->role = $role;
         $this->permission = $permission;
     }
-    
+
     /**
      * Users
      *
@@ -52,7 +52,6 @@ class AdminUserController extends AdminController {
 
         // The list of users will be filled later using the JSON Data method
         // below - to populate the DataTables table.
-
         return View::make('admin/user/index', compact('title'));
     }
 
@@ -63,22 +62,18 @@ class AdminUserController extends AdminController {
      */
     public function show($user)
     {
-        if ( $user->id )
-        {
+        if ($user->id) {
             $roles = $this->role->all();
             $permissions = $this->permission->all();
 
              // Title
             $title = Lang::get('admin/user/title.user_show');
-            
+
             return View::make('admin/user/show', compact('user', 'roles', 'permissions', 'title'));
-        }
-        else
-        {
+        } else {
             return Redirect::to('admin/users')->with('error', Lang::get('admin/user/messages.does_not_exist'));
         }
     }
-
 
     /**
      * Displays the form for user creation
@@ -86,14 +81,14 @@ class AdminUserController extends AdminController {
      */
     public function create()
     {
-        
+
         // Title
         $title = Lang::get('admin/user/title.create_a_new_user');
 
         // All roles
-        $roles = $this->role->all();        
+        $roles = $this->role->all();
 
-        // Selected roles 
+        // Selected roles
         $selectedRoles = Input::old('roles', array());
 
         // Show the page
@@ -106,7 +101,7 @@ class AdminUserController extends AdminController {
      */
     public function store()
     {
-        
+
         // Validate the inputs
         $rules = array(
             'username' => 'required|alpha_dash|unique:users,username',
@@ -133,17 +128,14 @@ class AdminUserController extends AdminController {
         // Save if valid. Password field will be hashed before save
         $this->user->save($rules);
 
-        if ( $this->user->id )
-        {
+        if ($this->user->id) {
             // Save roles. Handles updating.
             $this->user->saveRoles(Input::get( 'roles' ));
 
             // Redirect to the new user page
             //return Redirect::to('users/' . $this->user->id . '/edit')->with('success', Lang::get('admin/users/messages.create.success'));
             return Redirect::to('admin/users')->with('success', Lang::get('admin/user/messages.create.success'));
-        }
-        else
-        {
+        } else {
             // Get validation errors (see Ardent package)
             $error = $this->user->errors()->all();
 
@@ -151,7 +143,7 @@ class AdminUserController extends AdminController {
                 ->withInput(Input::except('password'))
                 ->with( 'error', $error );
         }
-    } 
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -161,18 +153,15 @@ class AdminUserController extends AdminController {
      */
     public function edit($user)
     {
-        if ( $user->id )
-        {
+        if ($user->id) {
             $roles = $this->role->all();
             $permissions = $this->permission->all();
 
              // Title
             $title = Lang::get('admin/user/title.user_update');
-            
+
             return View::make('admin/user/edit', compact('user', 'roles', 'permissions', 'title'));
-        }
-        else
-        {
+        } else {
             return Redirect::to('admin/users')->with('error', Lang::get('admin/user/messages.does_not_exist'));
         }
     }
@@ -185,7 +174,7 @@ class AdminUserController extends AdminController {
      */
     public function update($user)
     {
-        // If the 'admin' user is being updated, the username of this user will have been 
+        // If the 'admin' user is being updated, the username of this user will have been
         // disabled in the form, and so won't be present in the form POST values.
         // We'll change the rules here accordingly. The admin user cannot be renamed
         // or deleted.
@@ -199,8 +188,7 @@ class AdminUserController extends AdminController {
               'password' => 'between:4,11|confirmed',
               'password_confirmation' => 'between:4,11',
               );
-        }
-        else {
+        } else {
            // Validate the inputs
           $rules = array(
               'username'=> 'required|unique:users,username,'. $user->id,
@@ -213,8 +201,7 @@ class AdminUserController extends AdminController {
 
         $validator = Validator::make(Input::all(), $rules);
 
-        if ($validator->passes())
-        {
+        if ($validator->passes()) {
             $oldUser = clone $user;
             if ($user->username != 'admin') {
               $user->username = Input::get( 'username' );
@@ -225,8 +212,8 @@ class AdminUserController extends AdminController {
             $password = Input::get( 'password' );
             $passwordConfirmation = Input::get( 'password_confirmation' );
 
-            if(!empty($password)) {
-                if($password === $passwordConfirmation) {
+            if (!empty($password)) {
+                if ($password === $passwordConfirmation) {
                     $user->password = $password;
                     // The password confirmation will be removed from model
                     // before saving. This field will be used in Ardent's
@@ -245,12 +232,12 @@ class AdminUserController extends AdminController {
             $user->amend($rules);
             $error = $user->errors()->all();
 
-            if(empty($error)) {
+            if (empty($error)) {
                 // Save roles. Handles updating.
                 $user->saveRoles(Input::get( 'roles' ));
             }
 
-            if(empty($error)) {
+            if (empty($error)) {
                 // Redirect to the new user page
                 return Redirect::to('admin/users/' . $user->id . '/edit')->with('success', Lang::get('admin/user/messages.edit.success'));
             } else {
@@ -259,12 +246,10 @@ class AdminUserController extends AdminController {
                     ->withInput(Input::except('password','password_confirmation'))
                     ->with( 'error', $error );
             }
-        }
-        else
-        {
+        } else {
             // Form validation failed
             return Redirect::to('admin/users/' . $user->id . '/edit')->withInput()->withErrors($validator);
-        }        
+        }
     }
 
     /**
@@ -275,18 +260,15 @@ class AdminUserController extends AdminController {
      */
     public function delete($user)
     {
-        if ( $user->id )
-        {
+        if ($user->id) {
             $roles = $this->role->all();
             $permissions = $this->permission->all();
 
              // Title
             $title = Lang::get('admin/user/title.user_delete');
-            
+
             return View::make('admin/user/delete', compact('user', 'roles', 'permissions', 'title'));
-        }
-        else
-        {
+        } else {
             return Redirect::to('admin/users')->with('error', Lang::get('admin/user/messages.does_not_exist'));
         }
     }
@@ -299,8 +281,7 @@ class AdminUserController extends AdminController {
     public function destroy($user)
     {
         // Check if we are not trying to delete ourselves
-        if ($user->id === Confide::user()->id)
-        {
+        if ($user->id === Confide::user()->id) {
             // Redirect to the user management page
             return Redirect::to('admin/users')->with('error', Lang::get('admin/user/messages.delete.impossible'));
         }
@@ -312,13 +293,10 @@ class AdminUserController extends AdminController {
 
         // Was the comment post deleted?
         $user = User::find($id);
-        if (empty($user) )
-        {
+        if (empty($user) ) {
             // TODO needs to delete all of that user's content
             return Redirect::to('admin/users')->with('success', Lang::get('admin/user/messages.delete.success'));
-        }
-        else
-        {
+        } else {
             // There was a problem deleting the user
             return Redirect::to('admin/users')->with('error', Lang::get('admin/user/messages.delete.error'));
         }
