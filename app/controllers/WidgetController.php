@@ -17,13 +17,13 @@
 class WidgetController extends BaseController
 {
     /**
-     * User Model
-     * @var User
+     * Widget Model
+     * @var Widget
      */
     protected $widget;
 
     /**
-     * Inject the models.
+     * Inject the model.
      * @param Widget $widget
      */
     public function __construct(Widget $widget)
@@ -148,7 +148,6 @@ class WidgetController extends BaseController
      */
     public function update($widget)
     {
-
         $rules = array(
                 'name'=> 'required|alpha_dash|unique:widgets,name,' . $widget->id,
                 'description' => 'required'
@@ -177,7 +176,7 @@ class WidgetController extends BaseController
     }
 
     /**
-     * Remove user page.
+     * Remove widget page.
      *
      * @param $widget
      * @return Response
@@ -199,7 +198,7 @@ class WidgetController extends BaseController
     }
 
     /**
-     * Remove the specified user from storage.
+     * Remove the specified widget from storage.
      * @internal param $id
      * @return Response
      */
