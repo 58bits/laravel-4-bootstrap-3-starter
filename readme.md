@@ -26,6 +26,15 @@ Here's a description of the differences from the original starter site:
 
 * I've continued to use [Confide](https://github.com/Zizaco/confide) for authentication and [Entrust](https://github.com/Zizaco/entrust) for authorization - although still digging here.
 
+##Tests
+
+I've created sample PHP-Unit and Mockery-based tests in tests/controllers/WidgetControllerTest.php. These are contoller tests, using [Mockery](https://github.com/padraic/mockery) to mock the Widget model - meaning that no database connection is required for these tests. 
+
+Take a look at [Testing Laravel Controllers](http://net.tutsplus.com/tutorials/php/testing-laravel-controllers) for Jeffrey Way's approach to testing controllers. 
+
+For model testing, take a look at [Testing Like a Boss in Laravel: Models](http://net.tutsplus.com/tutorials/php/testing-like-a-boss-in-laravel-models/)
+
+
 ##Screenshots
 
 [![Home](http://downloads.58bits.com/lv4bs3/lv4bs3_01_s.png "Home page")](http://downloads.58bits.com/lv4bs3/lv4bs3_01.png)
