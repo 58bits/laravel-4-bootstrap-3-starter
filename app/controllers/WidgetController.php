@@ -136,7 +136,7 @@ class WidgetController extends BaseController
     {
         $widget = $this->widget->find($id);
 
-        if ($widget) {
+        if ($widget->id) {
 
         } else {
             // Redirect to the widget management page
