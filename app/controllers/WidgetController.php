@@ -104,14 +104,14 @@ class WidgetController extends BaseController
 
         // Check if the form validates with success
         if ($validator->passes()) {
+            
             // Get the inputs, with some exceptions
             $inputs = Input::except('csrf_token');
 
             $this->widget->name = $inputs['name'];
             $this->widget->description = $inputs['description'];
-            $this->widget->save($rules);
 
-            if ($this->widget->id) {
+            if ($this->widget->save($rules)) {
                 // Redirect to the new widget page
                 return Redirect::to('widgets')->with('success', Lang::get('widget/messages.create.success'));
 
@@ -170,8 +170,12 @@ class WidgetController extends BaseController
 
         // Check if the form validates with success
         if ($validator->passes()) {
-            $widget->name        = Input::get('name');
-            $widget->description = Input::get('description');
+
+            // Get the inputs, with some exceptions
+            $inputs = Input::except('csrf_token');
+
+            $widget->name = $inputs['name'];
+            $widget->description = $inputs['description'];
 
             // Was the widget updated?
             if ($widget->save($rules)) {
