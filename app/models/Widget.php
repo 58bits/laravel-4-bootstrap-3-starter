@@ -9,4 +9,15 @@ class Widget extends Eloquent {
 	 */
 	protected $table = 'widgets';
 
+    /**
+     * Add auditable events.
+     *
+     * @var string
+     */
+    public static function boot()
+    {
+        parent::boot();
+        Widget::observe(new AuditableObserver);
+    }
+
 }

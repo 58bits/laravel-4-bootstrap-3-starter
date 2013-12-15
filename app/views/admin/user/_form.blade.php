@@ -79,7 +79,7 @@
 			</div>
 			<!-- ./ activation status -->
 
-			<!-- Groups -->
+			<!-- roles -->
 			<div class="form-group {{{ $errors->has('roles') ? 'has-error' : '' }}}">
 		        <label class="control-label" for="roles">Roles</label>
 		        <div class="controls">
@@ -98,7 +98,7 @@
 					</span>
 		    	</div>
 			</div>
-			<!-- ./ groups --> 
+			<!-- ./ roles --> 
   		</div>
 	</div>
 		
