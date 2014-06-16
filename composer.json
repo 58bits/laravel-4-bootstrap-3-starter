@@ -4,7 +4,7 @@
 	"keywords": ["framework", "laravel"],
 	"require": {
 		"laravel/framework": "4.1.*",
-		"laravelbook/ardent": "2.4.1",
+		"laravelbook/ardent": "dev-master",
 		"zizaco/confide": "dev-master",
 		"zizaco/entrust": "dev-master",
 		"j20/php-uuid": "dev-master",
