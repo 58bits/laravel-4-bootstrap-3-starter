@@ -5,7 +5,7 @@
 	"require": {
 		"laravel/framework": "4.2.*",
     "laravelbook/ardent": "2.*",
-		"zizaco/confide": "dev-master",
+		"zizaco/confide": "~3.2",
 		"zizaco/entrust": "dev-master",
 		"j20/php-uuid": "dev-master",
         "bllim/datatables": "*"
